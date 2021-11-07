@@ -1,39 +1,41 @@
-const DomElement = function(selector, height, width, bg, fontSize) {
-   this.selector = selector;
-   this.height = height;
-   this.width = width;
-   this.bg = bg;
-   this.fontSize = fontSize;
+const DomElement = function (selector) {
+  this.selector = selector;
+  this.height = '300px';
+  this.width = '300px';
+  this.bg = 'green';
+  this.fontSize = '16px';
+
+  let newBlock;
+
+  this.createElement = function() {
+    if (this.selector.startsWith(".")) {
+      newBlock = document.createElement('div');
+      newBlock.className = this.selector.slice(1);
+      newBlock.style.cssText = `height: ${this.height}; width: ${this.width}; background-color: ${this.bg}; font-size: ${this.fontSize}`;
+      newBlock.innerHTML = prompt('Напишите что-нибудь');
+      document.body.append(newBlock);
+    }
+
+    else if (this.selector.startsWith("#")) {
+      newBlock = document.createElement('p')
+      newBlock.id = this.selector.slice(1);
+      newBlock.style.cssText = `height: ${this.height}; width: ${this.width}; background-color: ${this.bg}; font-size: ${this.fontSize}`;
+      newBlock.innerHTML = prompt('Напишите что-нибудь');
+      document.body.append(newBlock);
+
+    }
+    else {
+      return
+    }
+};
+
 }
 
-let div;
-let p;
-
-this.createElement = function () {
-  if(this.selector.startsWith(".")) {
-  div = document.createElement('div');
-  div.style.cssText = `height: ${this.height}; width: ${this.width}; background-color: ${this.bg}; font-size: ${this.fontSize}`;
-  div.innerHTML = prompt('Напишите что-нибудь');
-  document.body.append(div);
-  }
-  
-  else if (this.selector.startsWith("#")) {
-  p = document.createElement('id')
-  p.style.cssText = `height: ${this.height}; width: ${this.width}; background-color: ${this.bg}; font-size: ${this.fontSize}`;
-  p.innerHTML = prompt('Напишите что-нибудь');
-  p.body.append(p);
-
-  }
-  else {
-    console.log('указано не верно')
-  }
-
-}
 
 
+  let newElement = new DomElement("#block")
+  newElement.createElement()
 
-const newElement = new DomElement(100, 100, "yellow", 25)
 
-newElement.createElement()
 
 
